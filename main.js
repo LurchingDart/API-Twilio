@@ -1,12 +1,17 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const twilio = require('twilio');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // Cargar variables de entorno
 dotenv.config();
 
 const app = express();
-const port = 3000;
+
+//Middleware
+app.use(bodyParser.json());
+app.use(cors());
 
 // Configurar Twilio
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -25,19 +30,19 @@ app.post('/send-sms', (req, res) => {
   }
 
   client.messages
-    .create({
-      body: message,
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: to
-    })
-    .then(message => {
-      console.log('Mensaje enviado con SID:', message.sid);
-      res.status(200).json({ success: true, sid: message.sid });
-    })
-    .catch(error => {
-      console.error('Error al enviar el mensaje:', error);
-      res.status(500).json({ success: false, error: error.message });
-    });
+      .create({
+        body: message,
+        from: process.env.TWILIO_PHONE_NUMBER,
+        to: to
+      })
+      .then(message => {
+        console.log('Mensaje enviado con SID:', message.sid);
+        res.status(200).json({ success: true, sid: message.sid });
+      })
+      .catch(error => {
+        console.error('Error al enviar el mensaje:', error);
+        res.status(500).json({ success: false, error: error.message });
+      });
 });
 
 //------Main endpoint------//
