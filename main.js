@@ -22,28 +22,28 @@ const client = new twilio(accountSid, authToken);
 app.use(express.json());
 
 // Ruta para enviar SMS
-app.post('/send-sms', (req, res) => {
-  const { to, message } = req.body;
-
-  if (!to || !message) {
-    return res.status(400).json({ error: 'El campo "to" y "message" son requeridos' });
-  }
-
-  client.messages
-      .create({
-        body: message,
-        from: process.env.TWILIO_PHONE_NUMBER,
-        to: to
-      })
-      .then(message => {
-        console.log('Mensaje enviado con SID:', message.sid);
-        res.status(200).json({ success: true, sid: message.sid });
-      })
-      .catch(error => {
-        console.error('Error al enviar el mensaje:', error);
-        res.status(500).json({ success: false, error: error.message });
-      });
-});
+// app.post('/send-sms', (req, res) => {
+//   const { to, message } = req.body;
+//
+//   if (!to || !message) {
+//     return res.status(400).json({ error: 'El campo "to" y "message" son requeridos' });
+//   }
+//
+//   client.messages
+//       .create({
+//         body: message,
+//         from: process.env.TWILIO_PHONE_NUMBER,
+//         to: to
+//       })
+//       .then(message => {
+//         console.log('Mensaje enviado con SID:', message.sid);
+//         res.status(200).json({ success: true, sid: message.sid });
+//       })
+//       .catch(error => {
+//         console.error('Error al enviar el mensaje:', error);
+//         res.status(500).json({ success: false, error: error.message });
+//       });
+// });
 
 //------Main endpoint------//
 app.get("/", (req, res) => {
