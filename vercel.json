@@ -1,20 +1,20 @@
 {
-    "version" : 2,
-    "builds" : [
-      {
-        "src": "main.js",
-        "use" : "@now/node"
-      }
-    ],
-    "routes":[
-      {
-        "src": "/(.*)",
-        "dest": "/main.js"
-      }
-    ],
-    "env" : {
-      "TWILIO_ACCOUNT_SID": "@twilio_account_sid",
-      "TWILIO_AUTH_TOKEN": "@twilio_auth_token",
-      "TWILIO_PHONE_NUMBER": "@twilio_phone_number"
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.js",
+      "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/main.js"
+    }
+  ],
+  "env": {
+    "TWILIO_ACCOUNT_SID": "@twilio_account_sid",
+    "TWILIO_AUTH_TOKEN": "@twilio_auth_token",
+    "TWILIO_PHONE_NUMBER": "@twilio_phone_number"
   }
+}

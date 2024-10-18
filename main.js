@@ -9,7 +9,6 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
-
 //------App------//
 const app = express();
 
@@ -19,7 +18,7 @@ app.use(cors());
 
 //------Main endpoint------//
 app.get("/", (req, res) => {
-  res.send("Welcome to the API of the Aegissss");
+  res.send("Welcome to the API of the Aegis");
 });
 
 //------Post------//
@@ -46,8 +45,8 @@ app.post('/send-sms', (req, res) => {
       });
 });
 
-
 //------Server------//
-
-app.listen(9000, () => {
+const PORT = process.env.PORT || 9000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
