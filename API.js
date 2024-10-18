@@ -40,7 +40,12 @@ app.post('/send-sms', (req, res) => {
     });
 });
 
-// Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+//------Main endpoint------//
+app.get("/", (req, res) => {
+  res.send("Welcome to the API of the Aegis");
+});
+
+//------Server------//
+
+app.listen(9000, () => {
 });
