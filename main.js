@@ -19,7 +19,7 @@ app.use(cors());
 
 //------Main endpoint------//
 app.get("/", (req, res) => {
-  res.send("Welcome to the API of the Aegis");
+  res.send("Welcome to the API of the Aegissss");
 });
 
 //------Post------//
